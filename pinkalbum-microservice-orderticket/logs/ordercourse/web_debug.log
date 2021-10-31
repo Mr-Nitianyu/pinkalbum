@@ -1,0 +1,9 @@
+2021-10-05 17:03:32.885 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [/Users/nitianyu/IdeaProjects/pinkalbum/pinkalbum-microservice-orderticket/target/classes/xyz/qinghuan/mapper/OrderTicketMapper.class]
+2021-10-05 17:03:32.885 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'orderTicketMapper' and 'xyz.qinghuan.mapper.OrderTicketMapper' mapperInterface
+2021-10-05 17:03:32.886 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'orderTicketMapper'.
+2021-10-05 17:05:31.481 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [/Users/nitianyu/IdeaProjects/pinkalbum/pinkalbum-microservice-orderticket/target/classes/xyz/qinghuan/mapper/OrderTicketMapper.class]
+2021-10-05 17:05:31.482 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'orderTicketMapper' and 'xyz.qinghuan.mapper.OrderTicketMapper' mapperInterface
+2021-10-05 17:05:31.482 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'orderTicketMapper'.
+2021-10-05 17:06:21.078 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [/Users/nitianyu/IdeaProjects/pinkalbum/pinkalbum-microservice-orderticket/target/classes/xyz/qinghuan/mapper/OrderTicketMapper.class]
+2021-10-05 17:06:21.078 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'orderTicketMapper' and 'xyz.qinghuan.mapper.OrderTicketMapper' mapperInterface
+2021-10-05 17:06:21.079 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'orderTicketMapper'.

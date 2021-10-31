@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.qinghuan.mapper.OrderTicketMapper">
+    <insert id="insertFetchInfo" parameterType="FetchInfo" >
+  	insert into t_orderinfo(login_name,login_password,login_type,dept_id,student_id,teacher_id,vm_num,coursetime_id,kemuno,phone_num,teacher_name) values(#{LOGIN_NAME},#{LOGIN_PASSWORD},#{LOGIN_TPYE},#{DEPT_ID},#{STUDENT_ID},#{TEACHER_ID},#{VM_NUM},#{STUDENT_ID},#{KENUM},#{PHONE_NUM},#{TEACHER_NAME})
+    </insert>
+
+    <select id="checkPhoneNum" parameterType="String" resultType="Integer">
+        select count(t.user_id) from t_user t where t.user_phonenumber = #{phoneNum};
+    </select>
+    <select id="checkAccount" parameterType="String" resultType="Integer">
+        select count(*) from t_orderinfo t where t.login_name = #{account};
+    </select>
+    <update id="updateFetchInfo" parameterType="FetchInfo">
+        update t_orderinfo
+        <set>
+            <if test="LOGIN_NAME != null">login_name=#{LOGIN_NAME},</if>
+            <if test="LOGIN_PASSWORD != null">login_password=#{LOGIN_PASSWORD},</if>
+            <if test="LOGIN_TPYE != null">login_type=#{LOGIN_TPYE},</if>
+            <if test="KENUM != null">kemuno=#{KENUM},</if>
+            <if test="DEPT_ID != null">dept_id=#{DEPT_ID},</if>
+            <if test="STUDENT_ID != null">student_id=#{STUDENT_ID},</if>
+            <if test="TEACHER_ID != null">teacher_id=#{TEACHER_ID},</if>
+            <if test="VM_NUM != null">vm_num=#{VM_NUM},</if>
+            <if test="PHONE_NUM != null">phone_num=#{PHONE_NUM},</if>
+            <if test="TEACHER_NAME != null">teacher_name=#{TEACHER_NAME}</if>
+
+        </set>
+        where login_name=#{LOGIN_NAME}
+    </update>
+    <insert id="addOrderTime" parameterType="OrderInfo" >
+  	    insert into t_ordertime(user_name,user_phone,start_time,end_time,order_date) values(#{registName},#{registPhoneNumber},#{startTime},#{endTime},#{orderDate})
+    </insert>
+    <select id="queryOrderTime" parameterType="OrderInfo" resultMap="OrderInfoMap">
+        select user_name,user_phone,start_time,end_time,order_date from t_ordertime where order_date = #{orderDate} and user_phone = #{registPhoneNumber};
+    </select>
+    <resultMap id="OrderInfoMap" type="OrderInfo">
+        <id column="ot_id" property="id"/>
+        <result column="user_name" property="registName"/>
+        <result column="user_phone" property="registPhoneNumber"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="order_date" property="orderDate"/>
+    </resultMap>
+    <select id="queryOrderUser" parameterType="String" resultType="java.util.HashMap">
+       SELECT t.login_name,t.login_password,t.login_type,t.dept_id,t.student_id,t.teacher_id,t.vm_num,t.kemuno,t.phone_num FROM t_orderinfo t WHERE EXISTS (SELECT 1 FROM t_ordertime k WHERE t.phone_num=k.user_phone AND k.order_date=#{date});
+    </select>
+
+    <select id="queryOwnOrderTime" parameterType="String" resultType="java.util.HashMap">
+       SELECT t.start_time AS startTime,t.end_time AS endTime FROM t_ordertime t WHERE t.user_phone=#{phoneNum} AND t.order_date=#{date};
+    </select>
+    <delete id="deleteOrderTime" parameterType="OrderInfo">
+        DELETE FROM t_ordertime t WHERE t.user_phone = #{registPhoneNumber} and t.order_date = #{orderDate};
+    </delete>
+    <select id="queryfetchinfo" parameterType="String" resultType="java.util.HashMap">
+       SELECT * FROM t_orderinfo t WHERE t.phone_num=#{phoneNum};
+    </select>
+
+</mapper>

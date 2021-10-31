@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.qinghuan.mapper.UserMapper">
+    <select id="checkPhoneNumber" parameterType="String" resultType="Integer">
+        select count(t.user_id) from t_user t where t.user_phonenumber = #{phoneNumber};
+    </select>
+    <insert id="userRegister" parameterType="UserRegister" >
+  	    insert into t_user(user_name,user_phonenumber,user_password) values(#{registName},#{registPhoneNumber},#{registPassword})
+    </insert>
+    <select id="userSignIn" parameterType="String" resultMap="UserSignIn">
+        select t.user_id,t.user_name,t.user_phonenumber,t.user_password from t_user t where t.user_phonenumber=#{signInPhoneNumber} and t.user_password=#{signInPassword};
+    </select>
+    <resultMap id="UserSignIn" type="UserRegister">
+        <id column="user_id" property="id"/>
+        <result column="user_name" property="registName"/>
+        <result column="user_phonenumber" property="registPhoneNumber"/>
+        <result column="user_password" property="registPassword"/>
+    </resultMap>
+    <select id="checkDriverSchoolInfo" parameterType="String" resultType="java.util.HashMap">
+        select * from t_orderinfo t where t.phone_num = #{signInPhoneNumber};
+    </select>
+
+</mapper>
