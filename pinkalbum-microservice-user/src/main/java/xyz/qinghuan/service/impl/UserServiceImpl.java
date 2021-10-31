@@ -55,7 +55,8 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
             return "";
         } finally {
-            pool.returnResource(jedis);
+            //pool.returnResource(jedis);
+            jedis.close();
         }
     }
 
@@ -76,7 +77,8 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
             return "";
         } finally {
-            pool.returnResource(jedis);
+            //pool.returnResource(jedis);
+            jedis.close();
         }
     }
 
